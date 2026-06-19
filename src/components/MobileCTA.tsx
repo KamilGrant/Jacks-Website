@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle } from 'lucide-react';
+import QuoteLink from './QuoteLink';
 import { useEffect, useState } from 'react';
 import { SITE } from '../data/content';
 
@@ -73,10 +74,10 @@ export default function MobileCTA() {
               <Phone size={18} />
               Call {SITE.phone}
             </a>
-            <a href="#contact" style={s.quoteBtn}>
+            <QuoteLink style={s.quoteBtn}>
               <MessageCircle size={18} />
               Get a Quote
-            </a>
+            </QuoteLink>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { MapPin, CheckCircle2 } from 'lucide-react';
+import QuoteLink from './QuoteLink';
 import { useInView } from '../hooks/useInView';
 
 /* PLUG & PLAY: update suburbs to match the client's actual service area */
@@ -61,7 +62,7 @@ export default function ServiceArea() {
 
           <div style={s.note}>
             <CheckCircle2 size={16} color="var(--clr-brick)" />
-            <span>Don't see your suburb? <a href="#contact" style={{ color: 'var(--clr-brick)', fontWeight: 600 }}>Contact us</a> — we cover many more areas.</span>
+            <span>Don't see your suburb? <QuoteLink style={{ color: 'var(--clr-brick)', fontWeight: 600 }}>Contact us</QuoteLink> — we cover many more areas.</span>
           </div>
         </motion.div>
       </div>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
+import QuoteLink from './QuoteLink';
 
 export default function CtaBanner() {
   const [ref, inView] = useInView();
@@ -17,14 +18,7 @@ export default function CtaBanner() {
         >
           <h2 style={s.title}>Ready to Start Your Project?</h2>
           <p style={s.sub}>Get a free, no-obligation quote from JD Brickwork today.</p>
-          <motion.a
-            href="#contact"
-            style={s.btn}
-            whileHover={{ scale: 1.04, boxShadow: '0 8px 24px rgba(0,0,0,.2)' }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Contact Us Now
-          </motion.a>
+          <QuoteLink style={s.btn}>Contact Us Now</QuoteLink>
         </motion.div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import QuoteLink from '../components/QuoteLink';
 import { useEffect } from 'react';
 import { MapPin, Phone, CheckCircle2 } from 'lucide-react';
 import { SERVICES, SITE } from '../data/content';
@@ -37,7 +38,7 @@ export default function LocationPage() {
             <h1 style={s.heroTitle}>Bricklayer in {loc.name}</h1>
             <p style={s.heroDesc}>{loc.desc}</p>
             <div style={s.heroBtns}>
-              <Link to="/#contact" style={s.ctaPrimary}>Get a Free Quote</Link>
+              <QuoteLink style={s.ctaPrimary}>Get a Free Quote</QuoteLink>
               <a href={`tel:${SITE.phone.replace(/ /g,'')}`} style={s.ctaSecondary}><Phone size={16} />{SITE.phone}</a>
             </div>
           </div>
@@ -72,7 +73,7 @@ export default function LocationPage() {
             <div style={s.quoteBox}>
               <h3 style={s.quoteTitle}>Free Quote in {loc.name}</h3>
               <p style={s.quoteSub}>We'll come to your site, assess the job and provide a detailed written quote within 24 hours.</p>
-              <Link to="/#contact" style={s.quoteBtn}>Request a Quote</Link>
+              <QuoteLink style={s.quoteBtn}>Request a Quote</QuoteLink>
               <a href={`tel:${SITE.phone.replace(/ /g,'')}`} style={s.callBtn}><Phone size={15} />Call {SITE.phone}</a>
             </div>
             <div style={s.locLinks}>

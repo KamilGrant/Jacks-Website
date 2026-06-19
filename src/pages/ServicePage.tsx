@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import QuoteLink from '../components/QuoteLink';
 import { useEffect } from 'react';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { SERVICES } from '../data/content';
@@ -58,7 +59,7 @@ export default function ServicePage() {
               <p style={s.priceLabel}>Starting From</p>
               <p style={s.price}>{detail.from}</p>
               <p style={s.priceNote}>Final price confirmed after free site visit</p>
-              <Link to="/#contact" style={s.ctaBtn}>Get a Free Quote</Link>
+              <QuoteLink style={s.ctaBtn}>Get a Free Quote</QuoteLink>
               <a href="tel:0400000000" style={s.callBtn}>Call Now</a>
             </div>
             <div style={s.otherServices}>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import QuoteLink from './QuoteLink';
 
 const NAV_LINKS = [
   { href: '#home',         label: 'Home'       },
@@ -65,7 +66,7 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <a href="#contact" style={styles.cta} onClick={close}>Get a Quote</a>
+            <QuoteLink style={styles.cta}>Get a Quote</QuoteLink>
           </li>
         </ul>
 
@@ -96,7 +97,7 @@ export default function Navbar() {
                 </li>
               ))}
               <li style={{ paddingTop: 16 }}>
-                <a href="#contact" onClick={close} style={styles.drawerCta}>Get a Free Quote</a>
+                <QuoteLink style={styles.drawerCta}>Get a Free Quote</QuoteLink>
               </li>
             </ul>
           </motion.div>

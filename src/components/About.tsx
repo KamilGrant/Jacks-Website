@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Award, CheckCircle2 } from 'lucide-react';
+import QuoteLink from './QuoteLink';
 import { useInView } from '../hooks/useInView';
 import { SITE } from '../data/content';
 
@@ -69,7 +70,7 @@ export default function About() {
               </li>
             ))}
           </ul>
-          <a href="#contact" style={s.btn}>Work With Us</a>
+          <QuoteLink style={s.btn}>Work With Us</QuoteLink>
         </motion.div>
       </div>
     </section>

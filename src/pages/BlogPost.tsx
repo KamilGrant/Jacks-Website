@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import QuoteLink from '../components/QuoteLink';
 import { useEffect } from 'react';
 import { ArrowLeft, Clock, Tag } from 'lucide-react';
 import { BLOG_POSTS } from '../data/blog';
@@ -57,7 +58,7 @@ export default function BlogPost() {
           <aside style={s.cta}>
             <h3 style={s.ctaTitle}>Ready to Get Started?</h3>
             <p style={s.ctaDesc}>Get a free, no-obligation quote from JD Brickwork. We'll come to your site and give you an honest assessment.</p>
-            <Link to="/#contact" style={s.ctaBtn}>Get a Free Quote</Link>
+            <QuoteLink style={s.ctaBtn}>Get a Free Quote</QuoteLink>
           </aside>
         </div>
       </article>

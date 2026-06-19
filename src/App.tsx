@@ -20,8 +20,8 @@ import Blog           from './components/Blog';
 import CtaBanner      from './components/CtaBanner';
 import Contact        from './components/Contact';
 import Footer         from './components/Footer';
-import ScrollTop      from './components/ScrollTop';
 import MobileCTA      from './components/MobileCTA';
+import { useScrollToContact } from './hooks/useScrollToContact';
 
 // Pages
 import BlogList       from './pages/BlogList';
@@ -30,6 +30,7 @@ import ServicePage    from './pages/ServicePage';
 import LocationPage   from './pages/LocationPage';
 
 function HomePage() {
+  useScrollToContact();
   return (
     <>
       <Navbar />
@@ -52,7 +53,6 @@ function HomePage() {
         <Contact />
       </main>
       <Footer />
-      <ScrollTop />
       <MobileCTA />
     </>
   );

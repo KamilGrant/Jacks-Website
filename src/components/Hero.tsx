@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, ImagePlus } from 'lucide-react';
+import QuoteLink from './QuoteLink';
 import { SITE } from '../data/content';
 
 /*
@@ -40,7 +41,7 @@ export default function Hero() {
 
           <motion.div {...fade(0.55)} style={s.btns}>
             <a href="#gallery" style={s.btnPrimary}>View Our Work</a>
-            <a href="#contact" style={s.btnOutline}>Get a Free Quote</a>
+            <QuoteLink style={s.btnOutline}>Get a Free Quote</QuoteLink>
           </motion.div>
 
           {/* Trust badges */}

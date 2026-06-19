@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import QuoteLink from './QuoteLink';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
@@ -57,7 +58,7 @@ export default function FAQ() {
           <p style={s.eyebrow}>Got Questions?</p>
           <h2 style={s.title}>Frequently Asked Questions</h2>
           <p style={s.desc}>Everything you need to know before getting started. Can't find your answer? Just give us a call.</p>
-          <a href={`tel:0400000000`} style={s.callBtn}>Call Us Now</a>
+          <QuoteLink style={s.callBtn}>Get a Free Quote</QuoteLink>
         </motion.div>
 
         <motion.div
