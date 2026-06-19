@@ -135,6 +135,11 @@ export default function Navbar() {
           ))}
 
           <li>
+            <button onClick={() => handleHash('#quote-calculator')} style={s.estimateBtn}>
+              Free Estimate
+            </button>
+          </li>
+          <li>
             <QuoteLink style={s.cta}>Get a Quote</QuoteLink>
           </li>
         </ul>
@@ -212,6 +217,12 @@ export default function Navbar() {
                 </li>
               ))}
 
+              <li style={s.drawerRow}>
+                <button onClick={() => handleHash('#quote-calculator')} style={s.drawerLink}>
+                  Free Estimate Calculator
+                </button>
+              </li>
+
               <li style={{ paddingTop: 16 }}>
                 <QuoteLink style={s.drawerCta}>Get a Free Quote</QuoteLink>
               </li>
@@ -243,6 +254,12 @@ const s: Record<string, any> = {
     transition: 'color 0.2s',
     fontFamily: 'var(--font-body)',
   }),
+  estimateBtn: {
+    fontSize: '.875rem', fontWeight: 600, cursor: 'pointer', border: '2px solid var(--clr-brick)',
+    color: 'var(--clr-brick)', padding: '8px 18px', borderRadius: 'var(--radius)',
+    background: 'transparent', fontFamily: 'var(--font-body)', transition: 'all .2s',
+    marginLeft: 4,
+  } as React.CSSProperties,
   cta: {
     background: 'var(--clr-brick)', color: 'white', padding: '10px 22px',
     borderRadius: 'var(--radius)', fontSize: '.875rem', fontWeight: 600,
