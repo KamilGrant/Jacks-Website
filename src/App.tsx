@@ -10,7 +10,6 @@ import About          from './components/About';
 import Services       from './components/Services';
 import BeforeAfter    from './components/BeforeAfter';
 import Gallery        from './components/Gallery';
-import VideoSection   from './components/VideoSection';
 import QuoteCalculator from './components/QuoteCalculator';
 import Process        from './components/Process';
 import Reviews        from './components/Reviews';
@@ -44,8 +43,7 @@ function HomePage() {
         <Services />
         <BeforeAfter />
         <Gallery />
-        <VideoSection />
-        <QuoteCalculator />
+<QuoteCalculator />
         <Process />
         <Reviews />
         <FAQ />

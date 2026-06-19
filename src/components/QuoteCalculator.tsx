@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
-import { Calculator, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Calculator, ChevronRight, CheckCircle2, Send } from 'lucide-react';
 import { SITE } from '../data/content';
 
 const SERVICES = [
@@ -32,7 +32,7 @@ export default function QuoteCalculator() {
   const [name, setName]       = useState('');
   const [phone, setPhone]     = useState('');
   const [email, setEmail]     = useState('');
-  const [submitted] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const selectedSvc = SERVICES.find(s => s.id === service);
   const selectedMat = MATERIALS.find(m => m.id === material)!;
@@ -146,31 +146,70 @@ export default function QuoteCalculator() {
 
             {/* STEP 3 — Result */}
             {step === 'result' && (
-              <motion.div key="result" {...fade} style={{ textAlign: 'center' }}>
-                {!submitted ? (
+              <motion.div key="result" {...fade}>
+                {!sent ? (
                   <>
-                    <CheckCircle2 size={48} color="#4caf50" style={{ margin: '0 auto 16px' }} />
-                    <p style={{ ...s.stepTitle, textAlign: 'center' }}>Your Estimate, {name.split(' ')[0]}</p>
-                    <div style={s.estimate}>
-                      <span style={s.estimateLow}>{fmt(low)}</span>
-                      <span style={s.estimateDash}> – </span>
-                      <span style={s.estimateHigh}>{fmt(high)}</span>
+                    {/* Estimate range */}
+                    <div style={s.estimateBox}>
+                      <p style={{ ...s.stepTitle, marginTop: 0, textAlign: 'center' }}>Your Estimate, {name.split(' ')[0]}</p>
+                      <div style={s.estimate}>
+                        <span style={s.estimateLow}>{fmt(low)}</span>
+                        <span style={s.estimateDash}> – </span>
+                        <span style={s.estimateHigh}>{fmt(high)}</span>
+                      </div>
+                      <p style={s.estimateNote}>
+                        Based on ~{area.toFixed(1)}m² of {selectedSvc?.label} in {selectedMat.label.toLowerCase()}.
+                        Rough guide only — confirmed after free site visit.
+                      </p>
                     </div>
-                    <p style={s.estimateNote}>
-                      Based on ~{area.toFixed(1)}m² of {selectedSvc?.label} in {selectedMat.label.toLowerCase()}.
-                      This is a rough guide only — final price confirmed after site visit.
-                    </p>
-                    <div style={s.resultActions}>
+
+                    {/* Job summary */}
+                    <div style={s.summaryGrid}>
+                      {[
+                        ['Service',   selectedSvc?.label ?? ''],
+                        ['Material',  selectedMat.label],
+                        ['Dimensions',`${length}m × ${height}m`],
+                        ['Area',      `~${area.toFixed(1)} m²`],
+                      ].map(([k, v]) => (
+                        <div key={k} style={s.summaryItem}>
+                          <span style={s.summaryKey}>{k}</span>
+                          <span style={s.summaryVal}>{v}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Request formal quote */}
+                    <div style={s.quoteRequest}>
+                      <p style={s.quoteRequestTitle}>Request a Formal Quote</p>
+                      <p style={s.quoteRequestDesc}>
+                        Send your estimate details directly to JD Brickwork and we'll confirm a precise price after a free site visit.
+                      </p>
+                      <a
+                        href={`mailto:${SITE.email}?subject=Quote Request — ${selectedSvc?.label}&body=Hi JD Brickwork,%0A%0AI'd like to request a formal quote based on the following estimate:%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AService: ${encodeURIComponent(selectedSvc?.label ?? '')}%0AMaterial: ${encodeURIComponent(selectedMat.label)}%0ADimensions: ${length}m x ${height}m (approx. ${area.toFixed(1)} m²)%0AEstimate range: ${fmt(low)} – ${fmt(high)}%0A%0APlease contact me to arrange a site visit.%0A%0AThanks`}
+                        style={s.sendBtn}
+                        onClick={() => setSent(true)}
+                      >
+                        <Send size={16} />
+                        Send Enquiry &amp; Request Quote
+                      </a>
+                      <div style={s.orDivider}><span>or</span></div>
                       <a href={`tel:${SITE.phone.replace(/ /g,'')}`} style={s.callBtn}>Call {SITE.phone}</a>
-                      <button style={s.backBtn} onClick={() => { setStep('service'); setService(''); setLength(''); setHeight(''); }}>
-                        Start Over
-                      </button>
                     </div>
+
+                    <button style={{ ...s.backBtn, marginTop: 16, width: '100%' }} onClick={() => { setStep('service'); setService(''); setLength(''); setHeight(''); setSent(false); }}>
+                      Start Over
+                    </button>
                   </>
                 ) : (
-                  <div>
-                    <CheckCircle2 size={48} color="#4caf50" style={{ margin: '0 auto 16px' }} />
-                    <p style={s.stepTitle}>We'll be in touch soon!</p>
+                  <div style={{ textAlign: 'center', padding: '24px 0' }}>
+                    <CheckCircle2 size={56} color="#4caf50" style={{ margin: '0 auto 16px' }} />
+                    <p style={{ ...s.stepTitle, textAlign: 'center', marginTop: 0 }}>Enquiry Sent!</p>
+                    <p style={{ fontSize: '.875rem', color: 'var(--clr-muted)', marginBottom: 24 }}>
+                      We've received your details and will be in touch to arrange a free site visit.
+                    </p>
+                    <button style={s.backBtn} onClick={() => { setStep('service'); setService(''); setLength(''); setHeight(''); setSent(false); }}>
+                      Start a new estimate
+                    </button>
                   </div>
                 )}
               </motion.div>
@@ -212,11 +251,20 @@ const s: Record<string, any> = {
   fGroup:  { display: 'flex', flexDirection: 'column' as const, gap: 6, marginBottom: 16 },
   label:   { fontSize: '.72rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '.1em', color: 'var(--clr-mid)' },
   input:   { padding: '12px 14px', border: '1.5px solid var(--clr-border)', borderRadius: 8, fontFamily: 'var(--font-body)', fontSize: '.9rem', color: 'var(--clr-text)', outline: 'none' },
-  estimate:     { display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 4, margin: '16px 0' },
-  estimateLow:  { fontFamily: 'var(--font-head)', fontSize: '2.2rem', fontWeight: 700, color: 'var(--clr-dark)' },
-  estimateDash: { fontSize: '1.5rem', color: 'var(--clr-muted)' },
-  estimateHigh: { fontFamily: 'var(--font-head)', fontSize: '2.2rem', fontWeight: 700, color: 'var(--clr-brick)' },
-  estimateNote: { fontSize: '.82rem', color: 'var(--clr-muted)', lineHeight: 1.6, maxWidth: 380, margin: '0 auto 24px' },
-  resultActions:{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' as const },
-  callBtn: { padding: '14px 28px', background: 'var(--clr-brick)', color: 'white', borderRadius: 10, fontWeight: 700, fontSize: '.9rem' },
+  estimateBox:  { background: 'var(--clr-cream)', borderRadius: 14, padding: '24px', textAlign: 'center' as const, marginBottom: 20 },
+  estimate:     { display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 4, margin: '12px 0' },
+  estimateLow:  { fontFamily: 'var(--font-head)', fontSize: '2rem', fontWeight: 700, color: 'var(--clr-dark)' },
+  estimateDash: { fontSize: '1.4rem', color: 'var(--clr-muted)' },
+  estimateHigh: { fontFamily: 'var(--font-head)', fontSize: '2rem', fontWeight: 700, color: 'var(--clr-brick)' },
+  estimateNote: { fontSize: '.78rem', color: 'var(--clr-muted)', lineHeight: 1.6, margin: '0 auto' },
+  summaryGrid:  { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 24 },
+  summaryItem:  { display: 'flex', flexDirection: 'column' as const, gap: 2, padding: '10px 14px', background: 'white', border: '1px solid var(--clr-border)', borderRadius: 10 },
+  summaryKey:   { fontSize: '.68rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '.1em', color: 'var(--clr-muted)' },
+  summaryVal:   { fontSize: '.875rem', fontWeight: 600, color: 'var(--clr-dark)' },
+  quoteRequest: { background: 'rgba(155,106,62,.06)', border: '1.5px solid rgba(155,106,62,.25)', borderRadius: 14, padding: '24px', marginBottom: 12 },
+  quoteRequestTitle: { fontFamily: 'var(--font-head)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--clr-dark)', marginBottom: 8 },
+  quoteRequestDesc:  { fontSize: '.82rem', color: 'var(--clr-muted)', lineHeight: 1.6, marginBottom: 16 },
+  sendBtn:  { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%', padding: '14px', background: 'var(--clr-brick)', color: 'white', borderRadius: 10, fontWeight: 700, fontSize: '.9rem', marginBottom: 12 },
+  orDivider:{ textAlign: 'center' as const, fontSize: '.75rem', color: 'var(--clr-muted)', marginBottom: 12, position: 'relative' as const },
+  callBtn:  { display: 'block', textAlign: 'center' as const, padding: '12px', background: 'white', color: 'var(--clr-dark)', border: '1.5px solid var(--clr-border)', borderRadius: 10, fontWeight: 600, fontSize: '.875rem' },
 };
