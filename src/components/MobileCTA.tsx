@@ -30,7 +30,7 @@ export default function MobileCTA() {
               style={s.waPopup}
             >
               <p style={s.waTitle}>Chat with us on WhatsApp</p>
-              <p style={s.waSub}>We typically reply within an hour.</p>
+              <p style={s.waSub}>Send us a message and we'll get back to you.</p>
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
                 target="_blank"

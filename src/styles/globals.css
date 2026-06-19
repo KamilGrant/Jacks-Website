@@ -55,3 +55,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* Lightbox overrides */
 .yarl__container { background: rgba(20,18,15,.95) !important; }
+
+/* Navbar responsive */
+@media (max-width: 900px) {
+  .navbar-links   { display: none !important; }
+  .navbar-hamburger { display: flex !important; }
+}
