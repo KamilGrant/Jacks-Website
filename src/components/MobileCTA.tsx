@@ -28,7 +28,7 @@ export default function MobileCTA() {
   return (
     <>
       {/* ── Floating WhatsApp button (all screen sizes) ── */}
-      <div style={{ ...s.floatWrap, bottom: isMobile && show ? 86 : 24 }}>
+      <div style={{ ...s.floatWrap, bottom: isMobile ? 90 : 24 }}>
         <AnimatePresence>
           {waOpen && (
             <motion.div
