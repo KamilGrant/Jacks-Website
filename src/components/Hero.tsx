@@ -56,12 +56,13 @@ export default function Hero() {
 
         {/* ── RIGHT: Image ───────────────────────────────── */}
         <motion.div
+          className="hero-img-col"
           style={s.right}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: 'easeOut', delay: 0.2 }}
         >
-          <div style={s.imgFrame}>
+          <div className="hero-img-frame" style={s.imgFrame}>
             {imgOk ? (
               <img
                 src={HERO_IMAGE}

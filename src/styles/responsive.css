@@ -21,34 +21,52 @@
    HERO
 ══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
+  /* Stack to single column — text on top, image below */
   .hero-inner {
     grid-template-columns: 1fr !important;
-    gap: 36px !important;
-    padding-top: 0 !important;
+    gap: 28px !important;
+    padding: 0 !important;
+    height: auto !important;
+    align-items: start !important;
   }
   #home {
     height: auto !important;
     min-height: 0 !important;
-    padding: 110px 0 56px !important;
+    padding: 100px 0 48px !important;
+    overflow: visible !important;
   }
-  /* Image col: cap height and make it look good */
-  .hero-inner > *:last-child { order: -1; }
-  .hero-inner img {
-    height: 280px !important;
+
+  /* Image column: reset the desktop tall-frame styles */
+  .hero-img-col {
+    height: auto !important;
+    width: 100% !important;
+  }
+  .hero-img-frame {
+    height: 260px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,.12) !important;
+  }
+  .hero-img-frame img {
+    height: 260px !important;
     width: 100% !important;
     object-fit: cover !important;
-    border-radius: 16px !important;
+    object-position: center !important;
   }
+  /* Hide the floating accent card on mobile — too cramped */
+  .hero-img-frame > div[style*="absolute"] { display: none !important; }
 }
+
 @media (max-width: 640px) {
-  #home { padding: 96px 0 48px !important; }
-  .hero-inner img { height: 220px !important; }
+  #home { padding: 88px 0 40px !important; }
+  .hero-img-frame,
+  .hero-img-frame img { height: 220px !important; }
 }
 
 /* Landscape phone */
 @media (max-height: 500px) and (orientation: landscape) {
-  #home { padding: 80px 0 32px !important; }
-  .hero-inner img { height: 160px !important; }
+  #home { padding: 72px 0 24px !important; }
+  .hero-img-frame,
+  .hero-img-frame img { height: 150px !important; }
 }
 
 /* ══════════════════════════════════════════════════
