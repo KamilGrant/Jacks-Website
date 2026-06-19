@@ -9,26 +9,18 @@ const WHATSAPP_NUMBER = '61400000000';
 const WHATSAPP_MSG    = encodeURIComponent('Hi JD Brickwork! I\'d like to get a quote for a bricklaying project.');
 
 export default function MobileCTA() {
-  const [show, setShow]       = useState(false);
-  const [waOpen, setWaOpen]   = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [show, setShow]     = useState(false);
+  const [waOpen, setWaOpen] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setShow(true), 2000);
     return () => clearTimeout(t);
   }, []);
 
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
   return (
     <>
       {/* ── Floating WhatsApp button (all screen sizes) ── */}
-      <div style={{ ...s.floatWrap, bottom: isMobile ? 90 : 24 }}>
+      <div className="wa-float" style={s.floatWrap}>
         <AnimatePresence>
           {waOpen && (
             <motion.div
@@ -91,15 +83,19 @@ export default function MobileCTA() {
       </AnimatePresence>
 
       <style>{`
+        .wa-float { bottom: 24px; }
         .mobile-call-bar { display: none !important; }
-        @media (max-width: 768px) { .mobile-call-bar { display: flex !important; } }
+        @media (max-width: 900px) {
+          .mobile-call-bar { display: flex !important; }
+          .wa-float { bottom: 96px; }
+        }
       `}</style>
     </>
   );
 }
 
 const s: Record<string, React.CSSProperties> = {
-  floatWrap: { position: 'fixed', bottom: 24, right: 20, zIndex: 1100, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 10 },
+  floatWrap: { position: 'fixed', right: 20, zIndex: 1100, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 10 },
   waPopup:   { background: 'white', borderRadius: 14, padding: '16px 20px', boxShadow: '0 8px 40px rgba(0,0,0,.15)', width: 220, border: '1px solid var(--clr-border)' },
   waTitle:   { fontWeight: 700, fontSize: '.85rem', color: 'var(--clr-dark)', margin: '0 0 4px' },
   waSub:     { fontSize: '.75rem', color: 'var(--clr-muted)', margin: '0 0 12px' },
