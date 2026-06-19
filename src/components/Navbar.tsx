@@ -75,7 +75,7 @@ export default function Navbar() {
           onClick={() => setOpen(o => !o)}
           style={styles.hamburger}
         >
-          {open ? <X size={22} color={scrolled ? 'var(--clr-dark)' : '#fff'} /> : <Menu size={22} color={scrolled ? 'var(--clr-dark)' : '#fff'} />}
+          {open ? <X size={22} color="var(--clr-dark)" /> : <Menu size={22} color="var(--clr-dark)" />}
         </button>
       </div>
 
@@ -109,23 +109,22 @@ export default function Navbar() {
 const styles = {
   nav: (scrolled: boolean): React.CSSProperties => ({
     position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-    padding: scrolled ? '12px 0' : '20px 0',
-    background: scrolled ? 'var(--clr-white)' : 'transparent',
-    boxShadow: scrolled ? '0 2px 12px rgba(0,0,0,.08)' : 'none',
+    padding: scrolled ? '12px 0' : '16px 0',
+    background: 'var(--clr-white)',
+    boxShadow: scrolled ? '0 2px 12px rgba(0,0,0,.08)' : '0 1px 0 var(--clr-border)',
     transition: 'all 0.35s ease',
   }),
   inner: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' } as React.CSSProperties,
   logo: (_scrolled: boolean): React.CSSProperties => ({ display: 'flex', alignItems: 'center', gap: 10 }),
   logoImg: { height: 40, width: 'auto' } as React.CSSProperties,
-  logoText: (scrolled: boolean): React.CSSProperties => ({
+  logoText: (_scrolled: boolean): React.CSSProperties => ({
     fontFamily: 'var(--font-head)', fontSize: '1.4rem', fontWeight: 700,
-    color: scrolled ? 'var(--clr-dark)' : 'white',
-    transition: 'color 0.3s',
+    color: 'var(--clr-dark)',
   }),
   links: { display: 'flex', alignItems: 'center', gap: 28, listStyle: 'none' } as React.CSSProperties,
-  link: (scrolled: boolean, active: boolean): React.CSSProperties => ({
+  link: (_scrolled: boolean, active: boolean): React.CSSProperties => ({
     fontSize: '.875rem', fontWeight: 500,
-    color: scrolled ? (active ? 'var(--clr-brick)' : 'var(--clr-mid)') : (active ? 'var(--clr-tan)' : 'rgba(255,255,255,.85)'),
+    color: active ? 'var(--clr-brick)' : 'var(--clr-mid)',
     transition: 'color 0.25s',
     position: 'relative',
   }),
