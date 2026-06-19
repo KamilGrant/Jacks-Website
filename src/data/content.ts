@@ -21,36 +21,42 @@ export const SERVICES = [
     icon: 'Building2',
     title: 'New Build Brickwork',
     desc: 'Full structural brickwork for new residential and commercial builds, from footings to roofline.',
+    from: 'From $280/m²',
   },
   {
     id: 'restoration',
     icon: 'RotateCcw',
     title: 'Restoration & Repointing',
     desc: 'Expert repointing, tuckpointing and heritage restoration to bring old brickwork back to life.',
+    from: 'From $95/m²',
   },
   {
     id: 'feature',
     icon: 'Layers',
     title: 'Feature Walls & Paving',
     desc: 'Stunning feature walls, garden beds and paving that add character and value to your property.',
+    from: 'From $180/m²',
   },
   {
     id: 'retaining',
     icon: 'Shield',
     title: 'Retaining Walls',
     desc: 'Structurally sound retaining walls designed to handle load while looking great on any site.',
+    from: 'From $220/m²',
   },
   {
     id: 'fireplace',
     icon: 'Flame',
     title: 'Fireplaces & BBQs',
     desc: 'Custom-built brick fireplaces, pizza ovens and outdoor BBQ areas to complete your living space.',
+    from: 'From $3,500',
   },
   {
     id: 'extension',
     icon: 'HardHat',
     title: 'Extensions & Renovations',
     desc: 'Seamless brick extensions and renovations that match your existing structure perfectly.',
+    from: 'From $280/m²',
   },
 ];
 

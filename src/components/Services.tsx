@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Building2, RotateCcw, Layers, Shield, Flame, HardHat } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Building2, RotateCcw, Layers, Shield, Flame, HardHat, ArrowRight } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import { SERVICES } from '../data/content';
 
@@ -32,6 +33,12 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: n
       </motion.div>
       <h3 style={s.cardTitle}>{service.title}</h3>
       <p style={s.cardDesc}>{service.desc}</p>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 16 }}>
+        <span style={{ fontSize: '.78rem', fontWeight: 700, color: 'var(--clr-brick)' }}>{(service as any).from}</span>
+        <Link to={`/services/${service.id}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: '.78rem', fontWeight: 600, color: 'var(--clr-muted)' }}>
+          Learn more <ArrowRight size={12} />
+        </Link>
+      </div>
       {/* Animated bottom bar */}
       <motion.div
         style={s.bar}
