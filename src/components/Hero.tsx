@@ -187,7 +187,7 @@ const s: Record<string, React.CSSProperties> = {
 
   /* Floating card */
   accentCard: {
-    position: 'absolute', bottom: 28, left: -28,
+    position: 'absolute', bottom: 28, left: 16,
     background: 'white', borderRadius: 14,
     padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 12,
     boxShadow: '0 8px 32px rgba(0,0,0,.12)',

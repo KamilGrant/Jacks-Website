@@ -11,16 +11,24 @@ const WHATSAPP_MSG    = encodeURIComponent('Hi JD Brickwork! I\'d like to get a 
 export default function MobileCTA() {
   const [show, setShow]       = useState(false);
   const [waOpen, setWaOpen]   = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setShow(true), 2000);
     return () => clearTimeout(t);
   }, []);
 
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <>
       {/* ── Floating WhatsApp button (all screen sizes) ── */}
-      <div className="wa-float" style={s.floatWrap}>
+      <div style={{ ...s.floatWrap, bottom: isMobile && show ? 86 : 24 }}>
         <AnimatePresence>
           {waOpen && (
             <motion.div
@@ -84,11 +92,7 @@ export default function MobileCTA() {
 
       <style>{`
         .mobile-call-bar { display: none !important; }
-        @media (max-width: 768px) {
-          .mobile-call-bar { display: flex !important; }
-          /* Lift WhatsApp button above the call bar */
-          .wa-float { bottom: 90px !important; }
-        }
+        @media (max-width: 768px) { .mobile-call-bar { display: flex !important; } }
       `}</style>
     </>
   );

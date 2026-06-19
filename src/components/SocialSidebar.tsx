@@ -44,9 +44,9 @@ export default function SocialSidebar() {
   return (
     <>
       <motion.div
-        initial={{ x: -60 }}
-        animate={{ x: 0 }}
-        transition={{ delay: 1.5, duration: 0.5, ease: 'easeOut' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.6 }}
         style={s.sidebar}
         className="social-sidebar"
       >
@@ -58,8 +58,8 @@ export default function SocialSidebar() {
             rel="noreferrer"
             aria-label={sc.label}
             style={s.item}
-            initial={{ x: -40, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 1.6 + i * 0.1 }}
             whileHover={{ x: 8, backgroundColor: sc.color, color: 'white' }}
           >

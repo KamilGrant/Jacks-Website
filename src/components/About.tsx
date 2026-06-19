@@ -90,7 +90,7 @@ const s = {
   },
   img:       { width: '100%', objectFit: 'cover' as const, aspectRatio: '4/5', background: 'var(--clr-border)', display: 'block' },
   badge:     {
-    position: 'absolute' as const, top: 32, left: -24,
+    position: 'absolute' as const, top: 32, left: 16,
     background: 'var(--clr-brick)', padding: '18px 22px',
     borderRadius: 'var(--radius-lg)', display: 'flex', alignItems: 'center',
     gap: 12, boxShadow: '0 6px 24px rgba(0,0,0,.18)',
