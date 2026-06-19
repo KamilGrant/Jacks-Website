@@ -71,7 +71,7 @@ export default function SocialSection() {
         </motion.div>
 
         {/* Instagram grid */}
-        <div style={s.grid}>
+        <div className="social-grid" style={s.grid}>
           {INSTA_POSTS.map((post, i) => (
             <motion.a
               key={post.id}

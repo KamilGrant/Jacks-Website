@@ -67,7 +67,7 @@ export default function Services() {
           <p style={s.sectionDesc}>From foundations to feature walls, we handle every aspect of brickwork with skill and care.</p>
         </motion.div>
 
-        <div style={s.grid}>
+        <div className="services-grid" style={s.grid}>
           {SERVICES.map((svc, i) => (
             <ServiceCard key={svc.id} service={svc} index={i} />
           ))}

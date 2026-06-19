@@ -47,7 +47,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="section section-alt">
-      <div className="container" style={s.wrap}>
+      <div className="container faq-grid" style={s.wrap}>
         <motion.div
           ref={ref as React.Ref<HTMLDivElement>}
           initial={{ opacity: 0, x: -30 }}

@@ -1,0 +1,201 @@
+/* ─────────────────────────────────────────────────
+   Responsive overrides — tablet ≤900px, mobile ≤640px
+   All inline-style layouts are targeted via className
+───────────────────────────────────────────────── */
+
+/* ── Shared utilities ──────────────────────────── */
+@media (max-width: 900px) {
+  .container { padding: 0 20px; }
+}
+
+/* ── Hero ──────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  /* Stack image below text, cap height */
+  #home { height: auto !important; min-height: 100vh; padding: 120px 0 64px; }
+  #home img { height: 340px !important; width: 100%; object-fit: cover; border-radius: 16px; }
+}
+@media (max-width: 640px) {
+  #home { padding: 100px 0 48px; }
+  #home img { height: 260px !important; }
+}
+
+/* ── About ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+/* ── Stats ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0 !important;
+  }
+}
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ── Services ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 540px) {
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Accreditation ─────────────────────────────── */
+@media (max-width: 900px) {
+  .accreditation-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 540px) {
+  .accreditation-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ── Quote Calculator ──────────────────────────── */
+@media (max-width: 900px) {
+  .calc-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+/* ── Form rows (2-col → 1-col) ─────────────────── */
+@media (max-width: 540px) {
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── FAQ ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .faq-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  /* Remove sticky on tablet/mobile */
+  .faq-grid > div:first-child {
+    position: static !important;
+  }
+}
+
+/* ── Service Area (map) ────────────────────────── */
+@media (max-width: 900px) {
+  .service-area-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+/* ── Blog ──────────────────────────────────────── */
+@media (max-width: 900px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+}
+@media (max-width: 640px) {
+  .blog-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Social Section ────────────────────────────── */
+@media (max-width: 900px) {
+  .social-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 540px) {
+  .social-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ── Footer ────────────────────────────────────── */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+  .footer-social-cards {
+    flex-direction: column !important;
+  }
+}
+@media (max-width: 540px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+}
+
+/* ── Service page (detail) ─────────────────────── */
+@media (max-width: 900px) {
+  .service-body {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  .service-body aside {
+    position: static !important;
+  }
+}
+
+/* ── Contact ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+}
+
+/* ── Mobile call bar always visible ────────────── */
+.mobile-call-bar { display: none; }
+@media (max-width: 768px) {
+  .mobile-call-bar { display: flex !important; }
+}
+
+/* ── Navbar hamburger (already handled inline) ─── */
+@media (max-width: 900px) {
+  .nav-links     { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+}
+
+/* ── General font/spacing scale-down ──────────── */
+@media (max-width: 640px) {
+  .section { padding: 64px 0 !important; }
+  h1, h2 { word-break: break-word; }
+}
+
+/* ── Swiper carousel mobile ────────────────────── */
+@media (max-width: 640px) {
+  .swiper-button-prev,
+  .swiper-button-next { display: none !important; }
+}
+
+/* ── Gallery grid ──────────────────────────────── */
+@media (max-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

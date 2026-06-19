@@ -44,7 +44,7 @@ export default function Stats() {
   const [ref, inView] = useInView();
   return (
     <section style={s.bar}>
-      <div className="container" style={s.grid}>
+      <div className="container stats-grid" style={s.grid}>
         {STATS.map((stat, i) => (
           <motion.div
             key={stat.label}

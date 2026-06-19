@@ -22,7 +22,7 @@ export default function Hero() {
 
   return (
     <section id="home" style={s.section}>
-      <div className="container" style={s.inner}>
+      <div className="container hero-inner" style={s.inner}>
 
         {/* ── LEFT: Text ─────────────────────────────────── */}
         <div style={s.left}>

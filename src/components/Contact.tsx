@@ -39,7 +39,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section">
-      <div className="container" style={s.grid}>
+      <div className="container contact-grid" style={s.grid}>
         {/* Info */}
         <motion.div
           ref={ref as React.Ref<HTMLDivElement>}
@@ -84,7 +84,7 @@ export default function Contact() {
           style={s.formWrap}
         >
           <form onSubmit={handleSubmit} noValidate>
-            <div style={s.row}>
+            <div className="form-row" style={s.row}>
               <Field id="firstName" label="First Name *" type="text" placeholder="Jack" required />
               <Field id="lastName"  label="Last Name *"  type="text" placeholder="Smith" required />
             </div>

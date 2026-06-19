@@ -54,7 +54,7 @@ export default function Footer() {
             <p style={s.stripLabel}>Follow Our Work</p>
             <p style={s.stripSub}>Stay up to date with our latest projects and news</p>
           </div>
-          <div style={s.socialCards}>
+          <div className="footer-social-cards" style={s.socialCards}>
             {SOCIAL_LINKS.map(sc => (
               <motion.a
                 key={sc.label}
@@ -79,7 +79,7 @@ export default function Footer() {
       </div>
 
       {/* ── Main footer grid ──────────────────────────── */}
-      <div className="container" style={s.grid}>
+      <div className="container footer-grid" style={s.grid}>
         <div>
           <a href="#home" style={s.logo}>
             <img src="/logo.svg" alt="JD Brickwork" style={{ height: 36 }} onError={e => (e.currentTarget.style.display = 'none')} />

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/globals.css';
+import './styles/responsive.css';
 
 // Homepage sections
 import Navbar         from './components/Navbar';

@@ -17,7 +17,7 @@ export default function ServiceArea() {
 
   return (
     <section id="service-area" className="section">
-      <div className="container" style={s.wrap}>
+      <div className="container service-area-grid" style={s.wrap}>
         {/* Map embed */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}

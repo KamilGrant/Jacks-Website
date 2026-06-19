@@ -25,7 +25,7 @@ export default function Accreditation() {
         >
           Licensed · Insured · Accredited
         </motion.p>
-        <div style={s.grid}>
+        <div className="accreditation-grid" style={s.grid}>
           {BADGES.map((b, i) => (
             <motion.div
               key={b.title}

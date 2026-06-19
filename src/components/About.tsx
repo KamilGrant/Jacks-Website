@@ -16,7 +16,7 @@ export default function About() {
 
   return (
     <section id="about" className="section" ref={ref as React.Ref<HTMLElement>}>
-      <div className="container" style={s.grid}>
+      <div className="container about-grid" style={s.grid}>
 
         {/* Images */}
         <motion.div

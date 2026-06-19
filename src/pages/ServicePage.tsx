@@ -43,7 +43,7 @@ export default function ServicePage() {
             <p style={s.from}>From {detail.from}</p>
           </div>
         </div>
-        <div className="container" style={s.body}>
+        <div className="container service-body" style={s.body}>
           <div>
             <h2 style={s.h2}>About This Service</h2>
             <p style={s.desc}>{detail.description}</p>

@@ -50,7 +50,7 @@ export default function Gallery() {
         </div>
 
         {/* Grid */}
-        <motion.div layout style={s.grid}>
+        <motion.div layout className="gallery-grid" style={s.grid}>
           <AnimatePresence mode="popLayout">
             {filtered.map((item, i) => (
               <motion.div

@@ -25,7 +25,7 @@ export default function Blog() {
           </Link>
         </motion.div>
 
-        <div style={s.grid}>
+        <div className="blog-grid" style={s.grid}>
           {BLOG_POSTS.map((post, i) => (
             <motion.div
               key={post.slug}

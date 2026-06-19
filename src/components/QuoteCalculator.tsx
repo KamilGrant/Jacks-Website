@@ -44,7 +44,7 @@ export default function QuoteCalculator() {
 
   return (
     <section className="section" id="quote-calculator" style={{ background: 'var(--clr-dark)' }}>
-      <div className="container" style={s.wrap}>
+      <div className="container calc-grid" style={s.wrap}>
         <motion.div
           ref={ref as React.Ref<HTMLDivElement>}
           initial={{ opacity: 0, y: 30 }}
@@ -110,7 +110,7 @@ export default function QuoteCalculator() {
             {step === 'details' && (
               <motion.div key="details" {...fade}>
                 <p style={s.stepTitle}>Approximate dimensions</p>
-                <div style={s.row}>
+                <div className="form-row" style={s.row}>
                   <div style={s.fGroup}>
                     <label style={s.label}>Length (metres)</label>
                     <input style={s.input} type="number" min="0" placeholder="e.g. 6" value={length} onChange={e => setLength(e.target.value)} />
@@ -125,7 +125,7 @@ export default function QuoteCalculator() {
                   <label style={s.label}>Name</label>
                   <input style={s.input} type="text" placeholder="Jack Smith" value={name} onChange={e => setName(e.target.value)} />
                 </div>
-                <div style={s.row}>
+                <div className="form-row" style={s.row}>
                   <div style={s.fGroup}>
                     <label style={s.label}>Phone</label>
                     <input style={s.input} type="tel" placeholder="0400 000 000" value={phone} onChange={e => setPhone(e.target.value)} />
