@@ -25,32 +25,38 @@
   .hero-inner {
     grid-template-columns: 1fr !important;
     gap: 28px !important;
-    padding: 0 !important;
+    padding: 0 20px !important;
     height: auto !important;
     align-items: start !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
   #home {
     height: auto !important;
     min-height: 0 !important;
     padding: 100px 0 48px !important;
     overflow: visible !important;
+    width: 100% !important;
   }
 
   /* Image column: reset the desktop tall-frame styles */
   .hero-img-col {
     height: auto !important;
     width: 100% !important;
+    position: relative !important;
   }
   .hero-img-frame {
     height: 260px !important;
+    width: 100% !important;
     border-radius: 16px !important;
     box-shadow: 0 8px 32px rgba(0,0,0,.12) !important;
   }
   .hero-img-frame img {
-    height: 260px !important;
+    height: 100% !important;
     width: 100% !important;
     object-fit: cover !important;
     object-position: center !important;
+    border-radius: 16px !important;
   }
   /* Hide the floating accent card on mobile — too cramped */
   .hero-img-frame > div[style*="absolute"] { display: none !important; }
