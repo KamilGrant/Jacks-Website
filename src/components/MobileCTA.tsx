@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle } from 'lucide-react';
 import QuoteLink from './QuoteLink';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SITE } from '../data/content';
 
 /* PLUG & PLAY: Update WHATSAPP_NUMBER with client's number in international format (no +) */
@@ -11,6 +11,7 @@ const WHATSAPP_MSG    = encodeURIComponent('Hi JD Brickwork! I\'d like to get a 
 export default function MobileCTA() {
   const [show, setShow]     = useState(false);
   const [waOpen, setWaOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setShow(true), 2000);
@@ -20,8 +21,9 @@ export default function MobileCTA() {
   useEffect(() => {
     if (!waOpen) return;
     const handler = (e: Event) => {
-      const el = document.querySelector('.wa-float');
-      if (el && !el.contains(e.target as Node)) setWaOpen(false);
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
+        setWaOpen(false);
+      }
     };
     document.addEventListener('mousedown', handler);
     document.addEventListener('touchstart', handler as EventListener);
@@ -34,7 +36,7 @@ export default function MobileCTA() {
   return (
     <>
       {/* ── Floating WhatsApp button (all screen sizes) ── */}
-      <div className="wa-float" style={s.floatWrap}>
+      <div ref={wrapRef} className="wa-float" style={s.floatWrap}>
         <AnimatePresence>
           {waOpen && (
             <motion.div

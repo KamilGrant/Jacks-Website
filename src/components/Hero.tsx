@@ -82,18 +82,6 @@ export default function Hero() {
               </div>
             )}
 
-            {/* Floating accent card */}
-            <motion.div
-              style={s.accentCard}
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <div style={s.accentDot} />
-              <div>
-                <strong style={{ fontSize: '.85rem', color: 'var(--clr-dark)' }}>Free Quotes</strong>
-                <p style={{ fontSize: '.72rem', color: 'var(--clr-muted)', margin: 0 }}>No obligation, ever</p>
-              </div>
-            </motion.div>
           </div>
 
           {/* Decorative background shape */}
