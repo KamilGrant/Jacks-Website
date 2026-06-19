@@ -7,7 +7,11 @@ export function useScrollToContact() {
     if ((location.state as any)?.scrollTo) {
       const el = document.getElementById((location.state as any).scrollTo);
       if (el) {
-        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+        setTimeout(() => {
+          const offset = 72;
+          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }, 100);
       }
     }
   }, [location.state]);
