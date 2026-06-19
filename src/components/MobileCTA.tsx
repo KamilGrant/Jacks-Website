@@ -17,6 +17,20 @@ export default function MobileCTA() {
     return () => clearTimeout(t);
   }, []);
 
+  useEffect(() => {
+    if (!waOpen) return;
+    const handler = (e: Event) => {
+      const el = document.querySelector('.wa-float');
+      if (el && !el.contains(e.target as Node)) setWaOpen(false);
+    };
+    document.addEventListener('mousedown', handler);
+    document.addEventListener('touchstart', handler as EventListener);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('touchstart', handler as EventListener);
+    };
+  }, [waOpen]);
+
   return (
     <>
       {/* ── Floating WhatsApp button (all screen sizes) ── */}
