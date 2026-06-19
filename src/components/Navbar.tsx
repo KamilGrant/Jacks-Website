@@ -56,14 +56,29 @@ export default function Navbar() {
     <>
       {/* ── CSS: media-query control (avoids inline-style/CSS specificity war) ── */}
       <style>{`
-        .nb-links   { display: flex; }
-        .nb-burger  { display: none; }
-        .nb-mob-cta { display: none; }
+        .nb-links    { display: flex; }
+        .nb-burger   { display: none; }
+        .nb-mob-cta  { display: none; }
+        .nb-mob-est  { display: none; }
 
         @media (max-width: 900px) {
           .nb-links   { display: none !important; }
           .nb-burger  { display: flex !important; align-items: center; justify-content: center; }
           .nb-mob-cta { display: flex !important; }
+          .nb-mob-est { display: flex !important; align-items: center; }
+        }
+
+        /* Shrink logo image on mobile */
+        @media (max-width: 900px) {
+          .nb-logo-img { height: 28px !important; }
+          .nb-logo-text { font-size: .88rem !important; }
+        }
+
+        /* Tighten further on very narrow phones */
+        @media (max-width: 380px) {
+          .nb-mob-est  { padding: 5px 7px !important; font-size: .65rem !important; }
+          .nb-mob-cta a, .nb-mob-cta > a { padding: 5px 8px !important; font-size: .65rem !important; }
+          .nb-logo-text { display: none !important; }
         }
 
         /* Landscape short-screen: shrink nav */
@@ -83,8 +98,8 @@ export default function Navbar() {
 
           {/* ── Logo ── */}
           <a href="#home" style={s.logo} onClick={e => { e.preventDefault(); go('#home'); }}>
-            <img src="/logo.svg" alt="" style={s.logoImg} onError={e => (e.currentTarget.style.display = 'none')} />
-            <span style={s.logoText}>JD <span style={{ color: 'var(--clr-tan)' }}>Brickwork</span></span>
+            <img src="/logo.svg" alt="" className="nb-logo-img" style={s.logoImg} onError={e => (e.currentTarget.style.display = 'none')} />
+            <span className="nb-logo-text" style={s.logoText}>JD <span style={{ color: 'var(--clr-tan)' }}>Brickwork</span></span>
           </a>
 
           {/* ── Desktop nav links ── */}
@@ -161,7 +176,10 @@ export default function Navbar() {
           </ul>
 
           {/* ── Mobile: always-visible CTA + burger ── */}
-          <div className="nb-mob-cta" style={s.mobRight}>
+          <div className="nb-mob-cta nb-mob-right" style={s.mobRight}>
+            <button className="nb-mob-est" onClick={() => go('#quote-calculator')} style={s.mobEst}>
+              Free Estimate
+            </button>
             <QuoteLink style={s.mobCta}>Get a Quote</QuoteLink>
             <button
               className="nb-burger"
@@ -314,11 +332,16 @@ const s: Record<string, any> = {
   ddAll:    { fontSize: '.8rem', fontWeight: 600, color: 'var(--clr-brick)', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-body)' } as React.CSSProperties,
 
   /* Mobile right cluster */
-  mobRight: { display: 'none', alignItems: 'center', gap: 8, flexShrink: 0 } as React.CSSProperties,
+  mobRight: { display: 'none', alignItems: 'center', gap: 5, flexShrink: 0 } as React.CSSProperties,
+  mobEst: {
+    background: 'none', border: '1.5px solid var(--clr-brick)', color: 'var(--clr-brick)',
+    padding: '6px 9px', borderRadius: 'var(--radius)',
+    fontSize: '.72rem', fontWeight: 700, whiteSpace: 'nowrap', cursor: 'pointer',
+  } as React.CSSProperties,
   mobCta: {
     background: 'var(--clr-brick)', color: 'white',
-    padding: '8px 14px', borderRadius: 'var(--radius)',
-    fontSize: '.78rem', fontWeight: 700, whiteSpace: 'nowrap',
+    padding: '6px 10px', borderRadius: 'var(--radius)',
+    fontSize: '.72rem', fontWeight: 700, whiteSpace: 'nowrap',
   } as React.CSSProperties,
   burger: {
     padding: 8, background: 'none', border: 'none', cursor: 'pointer',

@@ -47,7 +47,7 @@ export default function Contact() {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <p style={s.eyebrow}>Get In Touch</p>
+          <p id="contact-heading" style={s.eyebrow}>Get In Touch</p>
           <h2 style={s.title}>Let's Talk About Your Project</h2>
           <p style={s.sub}>Fill in the form and we'll get back to you within 24 hours with a free quote.</p>
           <ul style={s.infoList}>

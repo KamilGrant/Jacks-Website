@@ -23,6 +23,7 @@ export default function ServiceArea() {
           initial={{ opacity: 0, x: -30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7 }}
+          className="map-wrap"
           style={s.mapWrap}
           ref={ref as React.Ref<HTMLDivElement>}
         >
@@ -72,7 +73,7 @@ export default function ServiceArea() {
 
 const s: Record<string, React.CSSProperties> = {
   wrap:    { display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 64, alignItems: 'center' },
-  mapWrap: { borderRadius: 20, overflow: 'hidden', boxShadow: '0 16px 48px rgba(0,0,0,.12)', height: 480 },
+  mapWrap: { borderRadius: 20, overflow: 'hidden', boxShadow: '0 16px 48px rgba(0,0,0,.12)', height: 480, position: 'relative' },
   map:     { width: '100%', height: '100%', border: 'none', display: 'block' },
   eyebrow: { fontSize: '.78rem', fontWeight: 600, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--clr-brick)', marginBottom: 12 },
   title:   { fontFamily: 'var(--font-head)', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 700, color: 'var(--clr-dark)', marginBottom: 16 },

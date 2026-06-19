@@ -8,8 +8,8 @@ export function useScrollToContact() {
       const el = document.getElementById((location.state as any).scrollTo);
       if (el) {
         setTimeout(() => {
-          const offset = 72;
-          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          const navH = (document.querySelector('nav') as HTMLElement)?.offsetHeight ?? 72;
+          const top = el.getBoundingClientRect().top + window.scrollY - navH - 12;
           window.scrollTo({ top, behavior: 'smooth' });
         }, 100);
       }

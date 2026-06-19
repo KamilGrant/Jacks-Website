@@ -165,7 +165,8 @@
     grid-template-columns: 1fr !important;
     gap: 40px !important;
   }
-  .service-area-grid iframe { height: 280px !important; }
+  .map-wrap { height: 360px !important; }
+  .service-area-grid iframe { height: 360px !important; }
 }
 
 /* ══════════════════════════════════════════════════

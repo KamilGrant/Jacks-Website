@@ -133,7 +133,7 @@ const s: Record<string, React.CSSProperties> = {
   socialCardIcon:  { width: 44, height: 44, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', flexShrink: 0 },
   socialCardLabel: { display: 'block', fontSize: '.9rem', fontWeight: 700, color: 'white', marginBottom: 2 },
   socialCardHandle:{ fontSize: '.75rem', color: 'rgba(255,255,255,.4)' },
-  grid:            { display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1.5fr', gap: 48, padding: '56px 0 48px' },
+  grid:            { display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1.5fr', gap: 48, paddingTop: 56, paddingBottom: 48 },
   logo:            { display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 },
   logoText:        { fontFamily: 'var(--font-head)', fontSize: '1.3rem', fontWeight: 700, color: 'white' },
   brandDesc:       { fontSize: '.85rem', color: 'rgba(255,255,255,.4)', lineHeight: 1.7, maxWidth: 280 },

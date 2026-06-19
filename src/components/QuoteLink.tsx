@@ -12,10 +12,10 @@ export default function QuoteLink({ style, children, className }: Props) {
   const location  = useLocation();
 
   const scrollToContact = () => {
-    const el = document.getElementById('contact');
+    const el = document.getElementById('contact-heading');
     if (!el) return;
-    const offset = 72; // clear the fixed navbar
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    const navH = (document.querySelector('nav') as HTMLElement)?.offsetHeight ?? 72;
+    const top = el.getBoundingClientRect().top + window.scrollY - navH - 12;
     window.scrollTo({ top, behavior: 'smooth' });
   };
 
@@ -24,7 +24,7 @@ export default function QuoteLink({ style, children, className }: Props) {
     if (location.pathname === '/') {
       scrollToContact();
     } else {
-      navigate('/', { state: { scrollTo: 'contact' } });
+      navigate('/', { state: { scrollTo: 'contact-heading' } });
     }
   };
 
