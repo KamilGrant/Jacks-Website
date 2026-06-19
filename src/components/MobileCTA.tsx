@@ -20,7 +20,7 @@ export default function MobileCTA() {
   return (
     <>
       {/* ── Floating WhatsApp button (all screen sizes) ── */}
-      <div style={s.floatWrap}>
+      <div className="wa-float" style={s.floatWrap}>
         <AnimatePresence>
           {waOpen && (
             <motion.div
@@ -84,20 +84,24 @@ export default function MobileCTA() {
 
       <style>{`
         .mobile-call-bar { display: none !important; }
-        @media (max-width: 768px) { .mobile-call-bar { display: flex !important; } }
+        @media (max-width: 768px) {
+          .mobile-call-bar { display: flex !important; }
+          /* Lift WhatsApp button above the call bar */
+          .wa-float { bottom: 90px !important; }
+        }
       `}</style>
     </>
   );
 }
 
 const s: Record<string, React.CSSProperties> = {
-  floatWrap: { position: 'fixed', bottom: 32, right: 32, zIndex: 1100, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 12 },
-  waPopup:   { background: 'white', borderRadius: 16, padding: '20px 24px', boxShadow: '0 8px 40px rgba(0,0,0,.15)', width: 240, border: '1px solid var(--clr-border)' },
-  waTitle:   { fontWeight: 700, fontSize: '.9rem', color: 'var(--clr-dark)', marginBottom: 4, margin: '0 0 4px' },
-  waSub:     { fontSize: '.78rem', color: 'var(--clr-muted)', margin: '0 0 14px' },
-  waBtn:     { display: 'block', textAlign: 'center', background: '#25D366', color: 'white', padding: '10px', borderRadius: 10, fontWeight: 700, fontSize: '.85rem' },
-  waFab:     { width: 56, height: 56, borderRadius: '50%', background: '#25D366', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 20px rgba(37,211,102,.4)' },
-  callBar:   { position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1000, display: 'flex', padding: '12px 16px', background: 'white', borderTop: '1px solid var(--clr-border)', gap: 12, boxShadow: '0 -4px 20px rgba(0,0,0,.1)' },
-  callBtn:   { flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '14px', background: 'var(--clr-brick)', color: 'white', borderRadius: 12, fontWeight: 700, fontSize: '.9rem' },
-  quoteBtn:  { flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '14px', background: 'var(--clr-cream)', color: 'var(--clr-dark)', borderRadius: 12, fontWeight: 700, fontSize: '.9rem', border: '1px solid var(--clr-border)' },
+  floatWrap: { position: 'fixed', bottom: 24, right: 20, zIndex: 1100, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 10 },
+  waPopup:   { background: 'white', borderRadius: 14, padding: '16px 20px', boxShadow: '0 8px 40px rgba(0,0,0,.15)', width: 220, border: '1px solid var(--clr-border)' },
+  waTitle:   { fontWeight: 700, fontSize: '.85rem', color: 'var(--clr-dark)', margin: '0 0 4px' },
+  waSub:     { fontSize: '.75rem', color: 'var(--clr-muted)', margin: '0 0 12px' },
+  waBtn:     { display: 'block', textAlign: 'center', background: '#25D366', color: 'white', padding: '9px', borderRadius: 10, fontWeight: 700, fontSize: '.82rem' },
+  waFab:     { width: 50, height: 50, borderRadius: '50%', background: '#25D366', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 20px rgba(37,211,102,.4)' },
+  callBar:   { position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1000, display: 'flex', padding: '8px 12px', background: 'white', borderTop: '1px solid var(--clr-border)', gap: 10, boxShadow: '0 -4px 16px rgba(0,0,0,.08)' },
+  callBtn:   { flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '11px 8px', background: 'var(--clr-brick)', color: 'white', borderRadius: 10, fontWeight: 700, fontSize: '.82rem' },
+  quoteBtn:  { flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '11px 8px', background: 'var(--clr-cream)', color: 'var(--clr-dark)', borderRadius: 10, fontWeight: 700, fontSize: '.82rem', border: '1px solid var(--clr-border)' },
 };

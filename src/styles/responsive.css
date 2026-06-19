@@ -1,201 +1,267 @@
-/* ─────────────────────────────────────────────────
-   Responsive overrides — tablet ≤900px, mobile ≤640px
-   All inline-style layouts are targeted via className
-───────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════
+   RESPONSIVE — JD Brickwork
+   Breakpoints: 900px (tablet), 640px (mobile), 480px (small mobile)
+   Landscape short-screen: max-height 500px + landscape orientation
+══════════════════════════════════════════════════ */
 
-/* ── Shared utilities ──────────────────────────── */
+/* ─── Container padding ────────────────────────── */
 @media (max-width: 900px) {
   .container { padding: 0 20px; }
 }
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+}
 
-/* ── Hero ──────────────────────────────────────── */
+/* ─── Section spacing ──────────────────────────── */
+@media (max-width: 640px) {
+  .section { padding: 60px 0 !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .hero-inner {
     grid-template-columns: 1fr !important;
-    gap: 40px !important;
+    gap: 36px !important;
+    padding-top: 0 !important;
   }
-  /* Stack image below text, cap height */
-  #home { height: auto !important; min-height: 100vh; padding: 120px 0 64px; }
-  #home img { height: 340px !important; width: 100%; object-fit: cover; border-radius: 16px; }
+  #home {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 110px 0 56px !important;
+  }
+  /* Image col: cap height and make it look good */
+  .hero-inner > *:last-child { order: -1; }
+  .hero-inner img {
+    height: 280px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+  }
 }
 @media (max-width: 640px) {
-  #home { padding: 100px 0 48px; }
-  #home img { height: 260px !important; }
+  #home { padding: 96px 0 48px !important; }
+  .hero-inner img { height: 220px !important; }
 }
 
-/* ── About ─────────────────────────────────────── */
+/* Landscape phone */
+@media (max-height: 500px) and (orientation: landscape) {
+  #home { padding: 80px 0 32px !important; }
+  .hero-inner img { height: 160px !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .about-grid {
     grid-template-columns: 1fr !important;
     gap: 40px !important;
   }
+  /* Hide the floating accent image on mobile (avoids overflow) */
+  .about-accent { display: none !important; }
+  /* Remove left badge negative offset */
+  .about-grid [style*="left: -24"] { left: 0 !important; top: 16px !important; }
 }
 
-/* ── Stats ─────────────────────────────────────── */
+/* ══════════════════════════════════════════════════
+   STATS BAR
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0 !important;
-  }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   SERVICES
+══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 540px) {
+  .services-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   ACCREDITATION
+══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .accreditation-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+@media (max-width: 540px) {
+  .accreditation-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   BEFORE / AFTER SLIDER
+══════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  #before-after { padding: 48px 0 !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   GALLERY
+══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 @media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+  .gallery-grid { grid-template-columns: 1fr !important; }
 }
 
-/* ── Services ──────────────────────────────────── */
-@media (max-width: 900px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-@media (max-width: 540px) {
-  .services-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* ── Accreditation ─────────────────────────────── */
-@media (max-width: 900px) {
-  .accreditation-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-@media (max-width: 540px) {
-  .accreditation-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-/* ── Quote Calculator ──────────────────────────── */
+/* ══════════════════════════════════════════════════
+   QUOTE CALCULATOR
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .calc-grid {
     grid-template-columns: 1fr !important;
     gap: 40px !important;
   }
 }
-
-/* ── Form rows (2-col → 1-col) ─────────────────── */
 @media (max-width: 540px) {
-  .form-row {
-    grid-template-columns: 1fr !important;
-  }
+  .form-row { grid-template-columns: 1fr !important; }
 }
 
-/* ── FAQ ───────────────────────────────────────── */
+/* ══════════════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .faq-grid {
     grid-template-columns: 1fr !important;
     gap: 40px !important;
   }
-  /* Remove sticky on tablet/mobile */
-  .faq-grid > div:first-child {
-    position: static !important;
-  }
+  .faq-grid > div:first-child { position: static !important; }
 }
 
-/* ── Service Area (map) ────────────────────────── */
+/* ══════════════════════════════════════════════════
+   SERVICE AREA MAP
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .service-area-grid {
     grid-template-columns: 1fr !important;
     gap: 40px !important;
   }
+  .service-area-grid iframe { height: 280px !important; }
 }
 
-/* ── Blog ──────────────────────────────────────── */
+/* ══════════════════════════════════════════════════
+   BLOG
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .blog-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px !important;
-  }
+  .blog-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
 }
 @media (max-width: 640px) {
-  .blog-grid {
-    grid-template-columns: 1fr !important;
-  }
+  .blog-grid { grid-template-columns: 1fr !important; }
 }
 
-/* ── Social Section ────────────────────────────── */
+/* ══════════════════════════════════════════════════
+   SOCIAL SECTION
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .social-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
+  .social-grid { grid-template-columns: repeat(3, 1fr) !important; }
 }
 @media (max-width: 540px) {
-  .social-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+  .social-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
-/* ── Footer ────────────────────────────────────── */
+/* ══════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 32px !important;
-  }
-  .footer-social-cards {
-    flex-direction: column !important;
-  }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+  .footer-social-cards { flex-wrap: wrap !important; }
 }
 @media (max-width: 540px) {
-  .footer-grid {
-    grid-template-columns: 1fr !important;
-    gap: 28px !important;
-  }
+  .footer-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .footer-social-cards { flex-direction: column !important; }
 }
 
-/* ── Service page (detail) ─────────────────────── */
+/* ══════════════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   SERVICE PAGE
+══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .service-body {
     grid-template-columns: 1fr !important;
     gap: 40px !important;
+    padding: 40px 0 64px !important;
   }
-  .service-body aside {
-    position: static !important;
-  }
+  .service-body aside { position: static !important; }
 }
 
-/* ── Contact ───────────────────────────────────── */
-@media (max-width: 900px) {
-  .contact-grid {
-    grid-template-columns: 1fr !important;
-    gap: 48px !important;
-  }
-}
-
-/* ── Mobile call bar always visible ────────────── */
+/* ══════════════════════════════════════════════════
+   MOBILE CALL BAR
+══════════════════════════════════════════════════ */
 .mobile-call-bar { display: none; }
 @media (max-width: 768px) {
   .mobile-call-bar { display: flex !important; }
 }
 
-/* ── Navbar hamburger (already handled inline) ─── */
-@media (max-width: 900px) {
-  .nav-links     { display: none !important; }
-  .nav-hamburger { display: flex !important; }
-}
-
-/* ── General font/spacing scale-down ──────────── */
-@media (max-width: 640px) {
-  .section { padding: 64px 0 !important; }
-  h1, h2 { word-break: break-word; }
-}
-
-/* ── Swiper carousel mobile ────────────────────── */
+/* ══════════════════════════════════════════════════
+   SWIPER / REVIEWS
+══════════════════════════════════════════════════ */
 @media (max-width: 640px) {
   .swiper-button-prev,
   .swiper-button-next { display: none !important; }
 }
 
-/* ── Gallery grid ──────────────────────────────── */
-@media (max-width: 900px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+/* ══════════════════════════════════════════════════
+   SOCIAL SIDEBAR — hide on all but large desktop
+══════════════════════════════════════════════════ */
+.social-sidebar { display: flex; }
+@media (max-width: 1200px) {
+  .social-sidebar { display: none !important; }
 }
-@media (max-width: 480px) {
-  .gallery-grid {
-    grid-template-columns: 1fr !important;
-  }
+
+/* ══════════════════════════════════════════════════
+   PROCESS STEPS
+══════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  /* Stack steps vertically on small screens */
+  #process .section { padding: 60px 0; }
+}
+
+/* ══════════════════════════════════════════════════
+   CTA BANNER
+══════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  #cta-banner { min-height: 280px !important; padding: 60px 24px !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   LANDSCAPE SHORT-SCREEN (phones on their side)
+══════════════════════════════════════════════════ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .section { padding: 40px 0 !important; }
+  .about-grid,
+  .calc-grid,
+  .contact-grid,
+  .faq-grid,
+  .service-area-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   IMAGES — ensure they never overflow
+══════════════════════════════════════════════════ */
+img { max-width: 100%; height: auto; }
+
+/* ══════════════════════════════════════════════════
+   MOBILE CALL BAR — body padding so footer isn't hidden
+══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  body { padding-bottom: 72px; }
+}
+
+/* ══════════════════════════════════════════════════
+   UTILITY
+══════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  h1 { font-size: clamp(1.8rem, 7vw, 2.6rem) !important; }
+  h2 { font-size: clamp(1.4rem, 5vw, 2rem) !important; }
 }

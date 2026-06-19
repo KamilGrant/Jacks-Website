@@ -27,11 +27,13 @@ export default function About() {
         >
           {/* PLUG & PLAY: replace /images/about-main.jpg */}
           <div style={s.imgMain}>
-            <img src="/images/about-main.jpg" alt="JD Brickwork team" style={s.img} />
+            <img src="/images/about-main.jpg" alt="JD Brickwork team" style={s.img}
+              onError={e => { e.currentTarget.src = '/images/gallery/g1.jpg'; }} />
           </div>
           {/* PLUG & PLAY: replace /images/about-accent.jpg */}
-          <div style={s.imgAccent}>
-            <img src="/images/about-accent.jpg" alt="Brickwork detail" style={{ ...s.img, aspectRatio: '1' }} />
+          <div style={s.imgAccent} className="about-accent">
+            <img src="/images/about-accent.jpg" alt="Brickwork detail" style={{ ...s.img, aspectRatio: '1' }}
+              onError={e => { e.currentTarget.src = '/images/gallery/g3.jpg'; }} />
           </div>
           <div style={s.badge}>
             <Award size={28} color="white" />
