@@ -1,76 +1,101 @@
-import { useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ImagePlus } from 'lucide-react';
 import { SITE } from '../data/content';
 
-const variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (delay: number) => ({ opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay } }),
-};
+/*
+ * PLUG & PLAY — Hero Image
+ * Replace /public/images/hero-bg.jpg with the client's photo.
+ * Recommended: a clear shot of a completed brickwork project, 900×1100px+
+ */
+const HERO_IMAGE = '/images/hero-bg.jpg';
+
+const fade = (delay: number) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, ease: 'easeOut' as const, delay },
+});
 
 export default function Hero() {
-  const bgRef = useRef<HTMLDivElement>(null);
-
-  // Subtle parallax on scroll
-  useEffect(() => {
-    const onScroll = () => {
-      if (bgRef.current) {
-        bgRef.current.style.transform = `scale(1.08) translateY(${window.scrollY * 0.25}px)`;
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  // GSAP floating particle effect on the overlay
-  useEffect(() => {
-    gsap.to('.hero-particle', {
-      y: -20, opacity: 0.6, duration: 2.5,
-      ease: 'sine.inOut', stagger: 0.4, repeat: -1, yoyo: true,
-    });
-  }, []);
+  const [imgOk, setImgOk] = useState(true);
 
   return (
     <section id="home" style={s.section}>
-      {/* BG image — PLUG & PLAY: replace /images/hero-bg.jpg */}
-      <div ref={bgRef} style={s.bg} />
-      <div style={s.overlay} />
+      <div className="container" style={s.inner}>
 
-      {/* Decorative particles */}
-      {[...Array(5)].map((_, i) => (
-        <div key={i} className="hero-particle" style={s.particle(i)} />
-      ))}
+        {/* ── LEFT: Text ─────────────────────────────────── */}
+        <div style={s.left}>
+          <motion.p {...fade(0.1)} style={s.eyebrow}>
+            Est. {SITE.established} · Professional Bricklaying
+          </motion.p>
 
-      <div className="container" style={s.content}>
-        <motion.p
-          variants={variants} initial="hidden" animate="visible" custom={0.2}
-          style={s.eyebrow}
-        >
-          Est. in Excellence · {SITE.established}
-        </motion.p>
+          <motion.h1 {...fade(0.25)} style={s.title}>
+            Built to Last.<br />
+            <span style={{ color: 'var(--clr-brick)' }}>Crafted with Pride.</span>
+          </motion.h1>
 
-        <motion.h1
-          variants={variants} initial="hidden" animate="visible" custom={0.45}
-          style={s.title}
-        >
-          Built to Last.<br />
-          <span style={{ color: 'var(--clr-tan)' }}>Crafted with Pride.</span>
-        </motion.h1>
+          <motion.p {...fade(0.4)} style={s.sub}>
+            {SITE.sub}
+          </motion.p>
 
-        <motion.p
-          variants={variants} initial="hidden" animate="visible" custom={0.65}
-          style={s.sub}
-        >
-          {SITE.sub}
-        </motion.p>
+          <motion.div {...fade(0.55)} style={s.btns}>
+            <a href="#gallery" style={s.btnPrimary}>View Our Work</a>
+            <a href="#contact" style={s.btnOutline}>Get a Free Quote</a>
+          </motion.div>
 
+          {/* Trust badges */}
+          <motion.div {...fade(0.7)} style={s.badges}>
+            <div style={s.badge}><span style={s.badgeNum}>{SITE.yearsExp}+</span><span style={s.badgeLabel}>Years Experience</span></div>
+            <div style={s.badgeDivider} />
+            <div style={s.badge}><span style={s.badgeNum}>{SITE.projects}+</span><span style={s.badgeLabel}>Projects Done</span></div>
+            <div style={s.badgeDivider} />
+            <div style={s.badge}><span style={s.badgeNum}>{SITE.reviews}+</span><span style={s.badgeLabel}>5-Star Reviews</span></div>
+          </motion.div>
+        </div>
+
+        {/* ── RIGHT: Image ───────────────────────────────── */}
         <motion.div
-          variants={variants} initial="hidden" animate="visible" custom={0.85}
-          style={s.btns}
+          style={s.right}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, ease: 'easeOut', delay: 0.2 }}
         >
-          <a href="#gallery" style={s.btnPrimary}>View Our Work</a>
-          <a href="#contact" style={s.btnOutline}>Get a Free Quote</a>
+          <div style={s.imgFrame}>
+            {imgOk ? (
+              <img
+                src={HERO_IMAGE}
+                alt="JD Brickwork — quality bricklaying"
+                style={s.img}
+                onError={() => setImgOk(false)}
+              />
+            ) : (
+              /* Shown until a real image is provided */
+              <div style={s.placeholder}>
+                <ImagePlus size={40} color="rgba(155,106,62,.5)" />
+                <p style={s.placeholderTitle}>Your Hero Photo Here</p>
+                <p style={s.placeholderHint}>
+                  Drop your image into<br />
+                  <code style={s.code}>/public/images/hero-bg.jpg</code>
+                </p>
+              </div>
+            )}
+
+            {/* Floating accent card */}
+            <motion.div
+              style={s.accentCard}
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <div style={s.accentDot} />
+              <div>
+                <strong style={{ fontSize: '.85rem', color: 'var(--clr-dark)' }}>Free Quotes</strong>
+                <p style={{ fontSize: '.72rem', color: 'var(--clr-muted)', margin: 0 }}>No obligation, ever</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Decorative background shape */}
+          <div style={s.bgShape} />
         </motion.div>
       </div>
 
@@ -81,72 +106,103 @@ export default function Hero() {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <ChevronDown color="white" size={24} />
+        <ChevronDown color="var(--clr-muted)" size={22} />
       </motion.a>
     </section>
   );
 }
 
-const s = {
+const s: Record<string, React.CSSProperties> = {
   section: {
-    position: 'relative' as const, minHeight: '100vh',
-    display: 'flex', alignItems: 'center', overflow: 'hidden',
+    height: '100vh', background: 'var(--clr-cream)',
+    display: 'flex', alignItems: 'center',
+    position: 'relative', overflow: 'hidden',
   },
-  bg: {
-    position: 'absolute' as const, inset: 0,
-    backgroundImage: 'url(/images/hero-bg.jpg)',
-    backgroundSize: 'cover', backgroundPosition: 'center',
-    backgroundColor: 'var(--clr-dark)',
-    transform: 'scale(1.08)',
-    willChange: 'transform',
+  inner: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: 64,
+    alignItems: 'center',
+    padding: '0 24px',
+    height: '100%',
+    paddingTop: 80,
   },
-  overlay: {
-    position: 'absolute' as const, inset: 0,
-    background: 'linear-gradient(135deg, rgba(20,18,15,.82) 0%, rgba(35,28,20,.58) 60%, rgba(20,18,15,.42) 100%)',
-  },
-  particle: (i: number): React.CSSProperties => ({
-    position: 'absolute',
-    width: 4 + i * 2, height: 4 + i * 2,
-    borderRadius: '50%',
-    background: 'var(--clr-tan)',
-    opacity: 0.25,
-    top: `${15 + i * 15}%`,
-    left: `${70 + i * 5}%`,
-  }),
-  content: {
-    position: 'relative' as const, zIndex: 1,
-    maxWidth: 720, padding: '120px 24px 80px',
+  left: {
+    display: 'flex', flexDirection: 'column', gap: 0,
   },
   eyebrow: {
-    fontSize: '.78rem', fontWeight: 600, letterSpacing: '.2em',
-    textTransform: 'uppercase' as const, color: 'var(--clr-tan)', marginBottom: 20,
+    fontSize: '.78rem', fontWeight: 600, letterSpacing: '.18em',
+    textTransform: 'uppercase', color: 'var(--clr-brick)', marginBottom: 20,
   },
   title: {
     fontFamily: 'var(--font-head)',
-    fontSize: 'clamp(2.4rem, 6vw, 4.2rem)',
-    fontWeight: 700, lineHeight: 1.1,
-    color: 'white', marginBottom: 24,
+    fontSize: 'clamp(2.2rem, 4vw, 3.6rem)',
+    fontWeight: 700, lineHeight: 1.15,
+    color: 'var(--clr-dark)', marginBottom: 24,
   },
   sub: {
-    fontSize: 'clamp(.9rem, 1.5vw, 1.05rem)',
-    color: 'rgba(255,255,255,.78)', maxWidth: 580,
-    marginBottom: 40, lineHeight: 1.8,
+    fontSize: '1rem', color: 'var(--clr-muted)',
+    lineHeight: 1.8, maxWidth: 480, marginBottom: 40,
   },
-  btns: { display: 'flex', gap: 16, flexWrap: 'wrap' as const },
+  btns:       { display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 48 },
   btnPrimary: {
-    display: 'inline-flex', alignItems: 'center', gap: 8,
+    display: 'inline-flex', alignItems: 'center',
     padding: '14px 32px', borderRadius: 'var(--radius)',
     background: 'var(--clr-brick)', color: 'white',
-    fontWeight: 600, fontSize: '.9rem', transition: 'all .25s',
+    fontWeight: 600, fontSize: '.9rem',
   },
   btnOutline: {
     display: 'inline-flex', alignItems: 'center',
     padding: '14px 32px', borderRadius: 'var(--radius)',
-    border: '2px solid rgba(255,255,255,.55)', color: 'white',
-    fontWeight: 600, fontSize: '.9rem', transition: 'all .25s',
+    border: '2px solid var(--clr-border)', color: 'var(--clr-mid)',
+    fontWeight: 600, fontSize: '.9rem',
   },
+  badges:      { display: 'flex', alignItems: 'center', gap: 24 },
+  badge:       { display: 'flex', flexDirection: 'column', gap: 2 },
+  badgeNum:    { fontFamily: 'var(--font-head)', fontSize: '1.6rem', fontWeight: 700, color: 'var(--clr-dark)', lineHeight: 1 },
+  badgeLabel:  { fontSize: '.72rem', color: 'var(--clr-muted)', textTransform: 'uppercase', letterSpacing: '.1em' },
+  badgeDivider:{ width: 1, height: 40, background: 'var(--clr-border)' },
+
+  /* Right image column */
+  right: { position: 'relative', height: '100%', display: 'flex', alignItems: 'center' },
+  imgFrame: {
+    position: 'relative', borderRadius: 24,
+    overflow: 'hidden',
+    height: 'calc(100vh - 120px)',
+    width: '100%',
+    boxShadow: '0 24px 64px rgba(0,0,0,.13)',
+    background: 'var(--clr-border)',
+  },
+  img: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' },
+  placeholder: {
+    width: '100%', height: '100%',
+    display: 'flex', flexDirection: 'column',
+    alignItems: 'center', justifyContent: 'center', gap: 16,
+    background: 'linear-gradient(145deg, #ede8e2, #ddd5c8)',
+  },
+  placeholderTitle: { fontFamily: 'var(--font-head)', fontSize: '1.1rem', color: 'var(--clr-mid)', fontWeight: 600, margin: 0 },
+  placeholderHint:  { fontSize: '.8rem', color: 'var(--clr-muted)', textAlign: 'center', lineHeight: 1.8, margin: 0 },
+  code:             { fontFamily: 'monospace', color: 'var(--clr-brick)', fontSize: '.78rem' },
+
+  /* Floating card */
+  accentCard: {
+    position: 'absolute', bottom: 28, left: -28,
+    background: 'white', borderRadius: 14,
+    padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 12,
+    boxShadow: '0 8px 32px rgba(0,0,0,.12)',
+  },
+  accentDot: { width: 12, height: 12, borderRadius: '50%', background: '#4caf50', flexShrink: 0 },
+
+  /* Background decorative blob */
+  bgShape: {
+    position: 'absolute', top: -40, right: -60, zIndex: -1,
+    width: '75%', aspectRatio: '1',
+    borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(155,106,62,.08) 0%, transparent 70%)',
+  },
+
   scrollDown: {
-    position: 'absolute' as const, bottom: 32, left: '50%',
+    position: 'absolute', bottom: 24, left: '50%',
     transform: 'translateX(-50%)', zIndex: 1, display: 'block',
   },
 };

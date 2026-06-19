@@ -1,4 +1,7 @@
-import { Facebook, Instagram, Globe, Phone, Mail, MapPin } from 'lucide-react';
+import { Globe, Phone, Mail, MapPin } from 'lucide-react';
+
+const SvgFb = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>;
+const SvgIg = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>;
 import { SITE } from '../data/content';
 
 const NAV = ['Home', 'About', 'Services', 'Our Work', 'Reviews', 'Contact'];
@@ -45,8 +48,8 @@ export default function Footer() {
           </ul>
           <div style={s.socials}>
             {[
-              { href: SITE.facebook, icon: <Facebook size={14} />, label: 'Facebook' },
-              { href: SITE.instagram, icon: <Instagram size={14} />, label: 'Instagram' },
+              { href: SITE.facebook, icon: <SvgFb />, label: 'Facebook' },
+              { href: SITE.instagram, icon: <SvgIg />, label: 'Instagram' },
               { href: SITE.google, icon: <Globe size={14} />, label: 'Google' },
             ].map(sc => (
               <a key={sc.label} href={sc.href} aria-label={sc.label} style={s.social}>{sc.icon}</a>

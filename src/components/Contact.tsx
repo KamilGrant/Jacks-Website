@@ -1,8 +1,12 @@
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
+import type { FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Globe } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Globe } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import { SITE } from '../data/content';
+
+const SvgFb = () => <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>;
+const SvgIg = () => <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>;
 
 const SERVICES = ['New Build Brickwork','Restoration & Repointing','Feature Walls & Paving','Retaining Walls','Fireplaces & BBQs','Extensions & Renovations','Other'];
 
@@ -61,8 +65,8 @@ export default function Contact() {
           </ul>
           <div style={s.socials}>
             {[
-              { href: SITE.facebook, icon: <Facebook size={15} />, label: 'Facebook' },
-              { href: SITE.instagram, icon: <Instagram size={15} />, label: 'Instagram' },
+              { href: SITE.facebook, icon: <SvgFb />, label: 'Facebook' },
+              { href: SITE.instagram, icon: <SvgIg />, label: 'Instagram' },
               { href: SITE.google, icon: <Globe size={15} />, label: 'Google' },
             ].map(sc => (
               <motion.a key={sc.label} href={sc.href} aria-label={sc.label} style={s.social} whileHover={{ background: 'var(--clr-brick)', color: 'white', borderColor: 'var(--clr-brick)' }}>

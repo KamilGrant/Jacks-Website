@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { SITE } from '../data/content';
 
 const NAV_LINKS = [
   { href: '#home',         label: 'Home'       },
