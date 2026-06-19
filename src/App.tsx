@@ -17,6 +17,8 @@ import Reviews        from './components/Reviews';
 import FAQ            from './components/FAQ';
 import ServiceArea    from './components/ServiceArea';
 import Blog           from './components/Blog';
+import SocialSection  from './components/SocialSection';
+import SocialSidebar  from './components/SocialSidebar';
 import CtaBanner      from './components/CtaBanner';
 import Contact        from './components/Contact';
 import Footer         from './components/Footer';
@@ -49,11 +51,13 @@ function HomePage() {
         <FAQ />
         <ServiceArea />
         <Blog />
+        <SocialSection />
         <CtaBanner />
         <Contact />
       </main>
       <Footer />
       <MobileCTA />
+      <SocialSidebar />
     </>
   );
 }
